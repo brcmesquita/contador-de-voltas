@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MostrarVoltas = ({ voltas }) => {
   return (
@@ -20,17 +20,35 @@ const MostrarTempo = ({ tempo }) => {
 };
 
 const Button = (props) => {
-  return <button>{props.texto}</button>;
+  return <button onClick={props.onClick}>{props.texto}</button>;
 };
 
 function App() {
+  const [numVoltas, setNumVoltas] = useState(20);
+  const [tempo, setTempo] = useState('01:30');
+
+  useEffect(() => {
+    setInterval(() => {
+      console.log('chamou!');
+    }, 1000);
+  }, []);
+
+  const incrementar = () => {
+    setNumVoltas(numVoltas + 1);
+    // console.log('incrementar');
+  };
+  const decrementar = () => {
+    setNumVoltas(numVoltas - 1);
+    // console.log('decrementar');
+  };
+
   return (
     <div>
-      <MostrarVoltas voltas='15' />
-      <Button texto='+' />
-      <Button texto='-' />
+      <MostrarVoltas voltas={numVoltas} />
+      <Button texto='+' onClick={incrementar} />
+      <Button texto='-' onClick={decrementar} />
 
-      <MostrarTempo tempo='2:00' />
+      <MostrarTempo tempo={tempo} />
       <Button texto='Iniciar' />
       <Button texto='Reiniciar' />
     </div>
