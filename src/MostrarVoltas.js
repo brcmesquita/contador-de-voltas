@@ -1,0 +1,11 @@
+const MostrarVoltas = (props) => {
+  return (
+    <p className="voltas">
+      <span className="voltas span">{props.voltas}</span>
+      <br />
+      Voltas
+    </p>
+  );
+};
+
+export default MostrarVoltas;
